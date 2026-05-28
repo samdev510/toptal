@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bookshop-db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: bookshop
+      POSTGRES_PASSWORD: bookshop_secret
+      POSTGRES_DB: bookshop
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: bookshop-db-test
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: bookshop_test
+      POSTGRES_PASSWORD: bookshop_test_secret
+      POSTGRES_DB: bookshop_test
+
+volumes:
+  pgdata:
