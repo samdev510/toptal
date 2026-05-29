@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { env } from './config/env';
 import { errorHandler } from './middleware/errorHandler';
+import { notFoundHandler } from './middleware/notFoundHandler';
 import authRoutes from './modules/auth/auth.routes';
 import categoriesRoutes from './modules/categories/categories.routes';
 import booksRoutes from './modules/books/books.routes';
@@ -33,6 +34,7 @@ app.use('/api/books', booksRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', ordersRoutes);
 
+app.use(notFoundHandler);
 app.use(errorHandler);
 
 export default app;

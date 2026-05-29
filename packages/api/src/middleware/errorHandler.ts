@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 
@@ -20,6 +21,10 @@ export function errorHandler(err: Error, _req: Request, res: Response, _next: Ne
       error: 'Invalid input',
       issues: err.flatten().fieldErrors,
     });
+  }
+
+  if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2034') {
+    return res.status(409).json({ error: 'Transaction conflict, please retry' });
   }
 
   console.error(err);
