@@ -8,6 +8,7 @@ const router: IRouter = Router();
 
 router.use(authenticate);
 router.get('/', cartController.getCart);
+router.post('/checkout', cartController.checkout);
 router.post('/', validate(addToCartSchema), cartController.addToCart);
 router.delete('/:bookId', cartController.removeFromCart);
 

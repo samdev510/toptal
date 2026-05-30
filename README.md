@@ -29,9 +29,9 @@ Seed logins:
 
 **Books** — `GET /api/books?categories=id1,id2&search=foo&page=1&limit=20` (only in-stock). Admin: CRUD. Stock set on create, not editable.
 
-**Cart** — `GET/POST /api/cart`, `DELETE /api/cart/:bookId` (logged in). Holds expire after 30 minutes.
+**Cart** — `GET/POST /api/cart`, `DELETE /api/cart/:bookId`, `POST /api/cart/checkout` (logged in). Holds expire after 30 minutes.
 
-**Orders** — `POST /api/orders/checkout`, `GET /api/orders`, `GET /api/orders/:id`
+**Orders** — `GET /api/orders`, `GET /api/orders/:id`
 
 ## Notes
 

@@ -101,7 +101,7 @@ Re-login as user before cart tests if you logged out in step 12.
 | 18 | `POST` | `{{baseUrl}}/api/cart` | `{"bookId":"{{bookId}}"}` |
 | 19 | `GET` | `{{baseUrl}}/api/cart` | — |
 | 20 | `POST` | `{{baseUrl}}/api/cart` | `{"bookId":"<another-book-uuid>"}` *(optional second item)* |
-| 21 | `POST` | `{{baseUrl}}/api/orders/checkout` | — *(no body)* → expect **`201`** + order JSON → save `orderId` |
+| 21 | `POST` | `{{baseUrl}}/api/cart/checkout` | — *(no body)* → expect **`201`** + order JSON → save `orderId` |
 | 22 | `GET` | `{{baseUrl}}/api/orders` | — |
 | 23 | `GET` | `{{baseUrl}}/api/orders/{{orderId}}` | — |
 | 24 | `GET` | `{{baseUrl}}/api/cart` | — *(should be empty after checkout)* |
@@ -127,7 +127,7 @@ Re-login as user before cart tests if you logged out in step 12.
 | `POST` | `/api/auth/login` | wrong password | — | `401` |
 | `POST` | `/api/auth/register` | duplicate email | — | `409` |
 | `GET` | `/api/cart` | — | none | `401` |
-| `POST` | `/api/orders/checkout` | — | user, empty cart | `400` |
+| `POST` | `/api/cart/checkout` | — | user, empty cart | `400` |
 | `POST` | `/api/cart` | valid `bookId` | user | `400` if out of stock |
 | `POST` | `/api/books` | create body | none / user | `401` / `403` |
 
@@ -143,7 +143,7 @@ Re-login as user before cart tests if you logged out in step 12.
 6. `POST /api/books` (admin) — or skip and use seeded `bookId`
 7. `POST /api/cart` (user)
 8. `GET /api/cart` (user)
-9. `POST /api/orders/checkout` (user)
+9. `POST /api/cart/checkout` (user)
 10. `GET /api/orders/{{orderId}}` (user)
 
 ---

@@ -15,3 +15,8 @@ export const removeFromCart: RequestHandler = asyncHandler(async (req, res) => {
   await cartService.removeFromCart(req.user!.userId, req.params.bookId as string);
   res.status(204).send();
 });
+
+export const checkout: RequestHandler = asyncHandler(async (req, res) => {
+  const order = await cartService.checkout(req.user!.userId);
+  res.status(201).json(order);
+});

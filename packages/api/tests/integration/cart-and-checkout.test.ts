@@ -61,7 +61,7 @@ describe('cart + checkout', () => {
       .send({ bookId });
 
     const order = await request(app)
-      .post('/api/orders/checkout')
+      .post('/api/cart/checkout')
       .set('Authorization', `Bearer ${user1Token}`);
 
     expect(order.status).toBe(201);
@@ -101,8 +101,8 @@ describe('cart + checkout', () => {
     });
 
     const [a, b] = await Promise.all([
-      request(app).post('/api/orders/checkout').set('Authorization', `Bearer ${user1Token}`),
-      request(app).post('/api/orders/checkout').set('Authorization', `Bearer ${user2Token}`),
+      request(app).post('/api/cart/checkout').set('Authorization', `Bearer ${user1Token}`),
+      request(app).post('/api/cart/checkout').set('Authorization', `Bearer ${user2Token}`),
     ]);
 
     expect([a.status, b.status].filter((s) => s === 201)).toHaveLength(1);
